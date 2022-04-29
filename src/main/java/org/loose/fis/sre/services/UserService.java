@@ -2,7 +2,8 @@ package org.loose.fis.sre.services;
 
 import org.dizitart.no2.Nitrite;
 import org.dizitart.no2.objects.ObjectRepository;
-import org.loose.fis.sre.exceptions.UsernameAlreadyExistsException;
+import org.loose.fis.sre.exceptions.InvalidCredentials;
+import org.loose.fis.sre.exceptions.NameAlreadyExistsException;
 import org.loose.fis.sre.model.User;
 
 import java.nio.charset.StandardCharsets;
@@ -24,15 +25,27 @@ public class UserService {
         userRepository = database.getRepository(User.class);
     }
 
-    public static void addUser(String username, String password, String role) throws UsernameAlreadyExistsException {
+    public static void addUser(String username, String password, String role) throws NameAlreadyExistsException {
         checkUserDoesNotAlreadyExist(username);
         userRepository.insert(new User(username, encodePassword(username, password), role));
     }
 
-    private static void checkUserDoesNotAlreadyExist(String username) throws UsernameAlreadyExistsException {
+    public static void validateUser(String username, String password, String role) throws InvalidCredentials {
+        checkInvalidCredentials(username);
+        userRepository.insert(new User(username, encodePassword(username, password), role));
+    }
+
+    private static void checkUserDoesNotAlreadyExist(String username) throws NameAlreadyExistsException {
         for (User user : userRepository.find()) {
-            if (Objects.equals(username, user.getUsername()))
-                throw new UsernameAlreadyExistsException(username);
+            if (Objects.equals(username, user.getName()))
+                throw new NameAlreadyExistsException(username);
+        }
+    }
+
+    private static void checkInvalidCredentials(String name) throws InvalidCredentials {
+        for (User user : userRepository.find()) {
+            if (Objects.equals(name, user.getName()))
+                throw new InvalidCredentials(name);
         }
     }
 

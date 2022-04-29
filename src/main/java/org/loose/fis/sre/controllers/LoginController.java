@@ -9,12 +9,12 @@ import org.loose.fis.sre.exceptions.InvalidCredentials;
 import org.loose.fis.sre.exceptions.NameAlreadyExistsException;
 import org.loose.fis.sre.services.UserService;
 
-public class RegistrationController {
+public class LoginController {
 
     @FXML
-    private Text registrationMessage;
-    @FXML
     private Text LoginMessage;
+    @FXML
+    private Text registrationMessage;
     @FXML
     private PasswordField passwordField;
     @FXML
@@ -28,22 +28,22 @@ public class RegistrationController {
     }
 
     @FXML
-    public void handleRegisterAction() {
-        try {
-            UserService.addUser(NameField.getText(), passwordField.getText(), (String) role.getValue());
-            registrationMessage.setText("Account created successfully!");
-        } catch (NameAlreadyExistsException e) {
-            registrationMessage.setText(e.getMessage());
-        }
-    }
-
-    @FXML
     public void handleLoginAction() {
         try {
             UserService.validateUser(NameField.getText(), passwordField.getText(), (String) role.getValue());
             LoginMessage.setText("Logged in successfully!");
         } catch (InvalidCredentials e) {
             LoginMessage.setText(e.getMessage());
+        }
+    }
+
+    @FXML
+    public void handleRegisterAction() {
+        try {
+            UserService.addUser(NameField.getText(), passwordField.getText(), (String) role.getValue());
+            registrationMessage.setText("Account created successfully!");
+        } catch (NameAlreadyExistsException e) {
+            registrationMessage.setText(e.getMessage());
         }
     }
 }

@@ -4,12 +4,12 @@ import org.dizitart.no2.objects.Id;
 
 public class User {
     @Id
-    private String username;
+    private String name;
     private String password;
     private String role;
 
-    public User(String username, String password, String role) {
-        this.username = username;
+    public User(String name, String password, String role) {
+        this.name = name;
         this.password = password;
         this.role = role;
     }
@@ -17,12 +17,12 @@ public class User {
     public User() {
     }
 
-    public String getUsername() {
-        return username;
+    public String getName() {
+        return name;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getPassword() {
@@ -48,14 +48,14 @@ public class User {
 
         User user = (User) o;
 
-        if (username != null ? !username.equals(user.username) : user.username != null) return false;
+        if (name != null ? !name.equals(user.name) : user.name != null) return false;
         if (password != null ? !password.equals(user.password) : user.password != null) return false;
         return role != null ? role.equals(user.role) : user.role == null;
     }
 
     @Override
     public int hashCode() {
-        int result = username != null ? username.hashCode() : 0;
+        int result = name != null ? name.hashCode() : 0;
         result = 31 * result + (password != null ? password.hashCode() : 0);
         result = 31 * result + (role != null ? role.hashCode() : 0);
         return result;
