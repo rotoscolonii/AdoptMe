@@ -36,6 +36,6 @@
           GridPane.rowIndex="6"/>
 
     <HBox alignment="bottom_right" spacing="1" GridPane.columnIndex="2" GridPane.rowIndex="6">
-        <Button onAction="#handleRegisterAction" text="Register"/>
+        <Button onAction="#handleRegisterMenu" text="Register"/>
     </HBox>
 </GridPane>

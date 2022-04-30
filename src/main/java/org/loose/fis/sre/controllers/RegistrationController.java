@@ -1,13 +1,21 @@
 package org.loose.fis.sre.controllers;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import org.loose.fis.sre.exceptions.InvalidCredentials;
 import org.loose.fis.sre.exceptions.NameAlreadyExistsException;
 import org.loose.fis.sre.services.UserService;
+
+import java.io.IOException;
 
 public class RegistrationController {
 
@@ -36,14 +44,17 @@ public class RegistrationController {
             registrationMessage.setText(e.getMessage());
         }
     }
-
     @FXML
-    public void handleLoginAction() {
-        try {
-            UserService.validateUser(NameField.getText(), passwordField.getText(), (String) role.getValue());
-            LoginMessage.setText("Logged in successfully!");
-        } catch (InvalidCredentials e) {
-            LoginMessage.setText(e.getMessage());
-        }
+    private Hyperlink loginPressed;
+    @FXML
+    public void handleLoginMenu(javafx.event.ActionEvent event) throws IOException {
+        Stage stage = (Stage) loginPressed.getScene().getWindow();
+        stage.close();
+
+        Parent register = FXMLLoader.load(getClass().getClassLoader().getResource("login.fxml"));
+        Scene scene = new Scene(register);
+        Stage appStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        appStage.setScene(scene);
+        appStage.show();
     }
 }
