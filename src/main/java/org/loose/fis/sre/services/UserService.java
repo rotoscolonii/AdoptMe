@@ -25,14 +25,14 @@ public class UserService {
         userRepository = database.getRepository(User.class);
     }
 
-    public static void addUser(String username, String password, String role) throws NameAlreadyExistsException {
+    public static void addUser(String username, String password, String phone, String email, String role) throws NameAlreadyExistsException {
         checkUserDoesNotAlreadyExist(username);
-        userRepository.insert(new User(username, encodePassword(username, password), role));
+        userRepository.insert(new User(username, encodePassword(username, password), phone, email, role));
     }
 
-    public static void validateUser(String username, String password, String role) throws InvalidCredentials {
-        checkInvalidCredentials(username);
-        userRepository.insert(new User(username, encodePassword(username, password), role));
+    public static void validateUser(String username, String password) throws InvalidCredentials {
+        checkInvalidCredentials(username, password);
+
     }
 
     private static void checkUserDoesNotAlreadyExist(String username) throws NameAlreadyExistsException {
@@ -42,11 +42,18 @@ public class UserService {
         }
     }
 
-    private static void checkInvalidCredentials(String name) throws InvalidCredentials {
+    private static void checkInvalidCredentials(String name, String password) throws InvalidCredentials {
+        boolean userExists = false;
         for (User user : userRepository.find()) {
-            if (Objects.equals(name, user.getName()))
-                throw new InvalidCredentials(name);
+            if (Objects.equals(name, user.getName())) {
+                userExists = true;
+                if(!Objects.equals(encodePassword(name, password), user.getPassword()))
+                    throw new InvalidCredentials();
+            }
         }
+
+        if(!userExists)
+            throw new InvalidCredentials();
     }
 
     private static String encodePassword(String salt, String password) {

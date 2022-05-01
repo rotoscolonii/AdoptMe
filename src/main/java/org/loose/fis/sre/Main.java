@@ -18,8 +18,8 @@ public class Main extends Application {
         initDirectory();
         UserService.initDatabase();
         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("login.fxml"));
-        primaryStage.setTitle("AdoptMe Login");
-        primaryStage.setScene(new Scene(root, 420, 275));
+        primaryStage.setTitle("AdoptMe");
+        primaryStage.setScene(new Scene(root, 420, 300));
         primaryStage.show();
     }
 
