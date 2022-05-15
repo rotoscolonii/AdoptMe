@@ -1,18 +1,23 @@
 package org.loose.fis.sre.model;
 
+import javafx.scene.control.PasswordField;
 import org.dizitart.no2.objects.Id;
+
+import javax.validation.OverridesAttribute;
 
 public class User {
     @Id
     private String name;
     private String password;
+    private String password2;
     private String phonenum;
     private String email;
     private String role;
 
-    public User(String name, String password, String phonenum, String email, String role) {
+    public User(String name, String phonenum, String email, String role, String password, String password2) {
         this.name = name;
         this.password = password;
+        this.password2 = password2;
         this.phonenum = phonenum;
         this.email = email;
         this.role = role;
@@ -70,6 +75,7 @@ public class User {
 
         if (name != null ? !name.equals(user.name) : user.name != null) return false;
         if (password != null ? !password.equals(user.password) : user.password != null) return false;
+        if (password2 != null ? !password2.equals(user.password2) : user.password2 != null) return false;
         if (phonenum != null ? !phonenum.equals(user.phonenum) : user.phonenum != null) return false;
         if (email != null ? !email.equals(user.email) : user.email != null) return false;
         return role != null ? role.equals(user.role) : user.role == null;

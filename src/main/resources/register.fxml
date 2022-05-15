@@ -19,28 +19,32 @@
 
     <PasswordField fx:id="passwordField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
 
-    <Label text="Phone Number:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+    <Label text="Verify Password:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
 
-    <TextField fx:id="PhoneNumField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+    <PasswordField fx:id="passwordField2" GridPane.columnIndex="1" GridPane.rowIndex="3" />
 
-    <Label text="Email:" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+    <Label text="Phone Number:" GridPane.columnIndex="0" GridPane.rowIndex="4" />
 
-    <TextField fx:id="EmailField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+    <TextField fx:id="PhoneNumField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
 
-    <Label text="Role:" GridPane.columnIndex="0" GridPane.rowIndex="5" />
+    <Label text="Email:" GridPane.columnIndex="0" GridPane.rowIndex="5" />
 
-    <ChoiceBox fx:id="role" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+    <TextField fx:id="EmailField" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+
+    <Label text="Role:" GridPane.columnIndex="0" GridPane.rowIndex="6" />
+
+    <ChoiceBox fx:id="role" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
     </ChoiceBox>
 
-    <Text fx:id="registrationMessage" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+    <Text fx:id="registrationMessage" GridPane.columnIndex="1" GridPane.rowIndex="7" />
 
-    <HBox alignment="bottom_center" spacing="6" GridPane.columnIndex="1" GridPane.rowIndex="7">
+    <HBox alignment="bottom_center" spacing="6" GridPane.columnIndex="1" GridPane.rowIndex="8">
         <Button onAction="#handleRegisterAction" text="Register" />
     </HBox>
 
-    <Text id="login-text" text="You already have an account?" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="9" />
+    <Text id="login-text" text="You already have an account?" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="10" />
 
-    <HBox alignment="bottom_left" spacing="1" GridPane.columnIndex="2" GridPane.rowIndex="9">
+    <HBox alignment="bottom_left" spacing="1" GridPane.columnIndex="2" GridPane.rowIndex="10">
         <Hyperlink fx:id="loginPressed" onAction="#handleLoginMenu" text="Log in" />
     </HBox>
    <columnConstraints>

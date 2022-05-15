@@ -3,6 +3,7 @@ package org.loose.fis.sre.services;
 import org.dizitart.no2.Nitrite;
 import org.dizitart.no2.objects.ObjectRepository;
 import org.loose.fis.sre.exceptions.InvalidCredentials;
+import org.loose.fis.sre.exceptions.InvalidPassword;
 import org.loose.fis.sre.exceptions.NameAlreadyExistsException;
 import org.loose.fis.sre.model.User;
 
@@ -25,9 +26,10 @@ public class UserService {
         userRepository = database.getRepository(User.class);
     }
 
-    public static void addUser(String username, String password, String phone, String email, String role) throws NameAlreadyExistsException {
+    public static void addUser(String username, String phone, String email, String role, String password,String password2) throws NameAlreadyExistsException, InvalidPassword {
         checkUserDoesNotAlreadyExist(username);
-        userRepository.insert(new User(username, encodePassword(username, password), phone, email, role));
+        checkSamePassword(password,password2);
+        userRepository.insert(new User(username, encodePassword(username, password), encodePassword(username, password2), phone, email, role));
     }
 
     public static void validateUser(String username, String password) throws InvalidCredentials {
@@ -54,6 +56,11 @@ public class UserService {
 
         if(!userExists)
             throw new InvalidCredentials();
+    }
+
+    private static void checkSamePassword(String password, String password2) throws InvalidPassword {
+        if (password.equals(password2)) return;
+        throw new InvalidPassword();
     }
 
     private static String encodePassword(String salt, String password) {
