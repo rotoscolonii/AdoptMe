@@ -26,7 +26,7 @@ public class UserService {
         userRepository = database.getRepository(User.class);
     }
 
-    public static void addUser(String username, String phone, String email, String role, String password,String password2) throws NameAlreadyExistsException, InvalidPassword {
+    public static void addUser(String username, String password,String password2, String phone, String email, String role) throws NameAlreadyExistsException, InvalidPassword {
         checkUserDoesNotAlreadyExist(username);
         checkSamePassword(password,password2);
         userRepository.insert(new User(username, encodePassword(username, password), encodePassword(username, password2), phone, email, role));

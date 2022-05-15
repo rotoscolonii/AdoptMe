@@ -14,7 +14,7 @@ public class User {
     private String email;
     private String role;
 
-    public User(String name, String phonenum, String email, String role, String password, String password2) {
+    public User(String name, String password, String password2, String phonenum, String email, String role) {
         this.name = name;
         this.password = password;
         this.password2 = password2;
@@ -85,6 +85,7 @@ public class User {
     public int hashCode() {
         int result = name != null ? name.hashCode() : 0;
         result = 31 * result + (password != null ? password.hashCode() : 0);
+        result = 31 * result + (password2 != null ? password2.hashCode() : 0);
         result = 31 * result + (phonenum != null ? phonenum.hashCode() : 0);
         result = 31 * result + (email != null ? email.hashCode() : 0);
         result = 31 * result + (role != null ? role.hashCode() : 0);
