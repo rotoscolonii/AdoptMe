@@ -4,6 +4,7 @@ import org.dizitart.no2.Nitrite;
 import org.dizitart.no2.objects.ObjectRepository;
 import org.loose.fis.sre.exceptions.InvalidCredentials;
 import org.loose.fis.sre.exceptions.InvalidPassword;
+import org.loose.fis.sre.exceptions.NotComplete;
 import org.loose.fis.sre.exceptions.NameAlreadyExistsException;
 import org.loose.fis.sre.model.User;
 
@@ -26,9 +27,10 @@ public class UserService {
         userRepository = database.getRepository(User.class);
     }
 
-    public static void addUser(String username, String password,String password2, String phone, String email, String role) throws NameAlreadyExistsException, InvalidPassword {
+    public static void addUser(String username, String password,String password2, String phone, String email, String role) throws NameAlreadyExistsException, InvalidPassword, NotComplete {
         checkUserDoesNotAlreadyExist(username);
         checkSamePassword(password,password2);
+        checkComplete(username, password, password2, phone, email, role);
         userRepository.insert(new User(username, encodePassword(username, password), encodePassword(username, password2), phone, email, role));
     }
 
@@ -58,9 +60,14 @@ public class UserService {
             throw new InvalidCredentials();
     }
 
+    private static void checkComplete(String name, String password, String password2, String phone, String email, String role) throws NotComplete {
+        if (name.isEmpty() || password.isEmpty() || password2.isEmpty() || phone.isEmpty() || email.isEmpty() || role.isEmpty())
+            throw new NotComplete();
+    }
+
     private static void checkSamePassword(String password, String password2) throws InvalidPassword {
         if (password.equals(password2)) return;
-        throw new InvalidPassword();
+        else throw new InvalidPassword();
     }
 
     private static String encodePassword(String salt, String password) {

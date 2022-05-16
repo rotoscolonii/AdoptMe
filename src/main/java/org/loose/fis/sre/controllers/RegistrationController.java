@@ -11,7 +11,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import org.loose.fis.sre.exceptions.InvalidCredentials;
+import org.loose.fis.sre.exceptions.NotComplete;
 import org.loose.fis.sre.exceptions.InvalidPassword;
 import org.loose.fis.sre.exceptions.NameAlreadyExistsException;
 import org.loose.fis.sre.services.UserService;
@@ -22,8 +22,6 @@ public class RegistrationController {
 
     @FXML
     private Text registrationMessage;
-    @FXML
-    private Text LoginMessage;
     @FXML
     private PasswordField passwordField;
     @FXML
@@ -45,13 +43,16 @@ public class RegistrationController {
     @FXML
     public void handleRegisterAction() {
         try {
-            UserService.addUser(NameField.getText(),PhoneNumField.getText(), EmailField.getText(), (String) role.getValue(), passwordField.getText(),passwordField2.getText() );
+            UserService.addUser(NameField.getText(), passwordField.getText(),passwordField2.getText(), PhoneNumField.getText(), EmailField.getText(), (String) role.getValue() );
             registrationMessage.setText("Account created successfully!");
         } catch (NameAlreadyExistsException e) {
             registrationMessage.setText(e.getMessage());
         }
         catch (InvalidPassword p) {
             registrationMessage.setText(p.getMessage());
+        }
+        catch (NotComplete n) {
+            registrationMessage.setText(n.getMessage());
         }
 
     }

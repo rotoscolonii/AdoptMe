@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<TabPane prefHeight="480.0" prefWidth="850.0" tabClosingPolicy="UNAVAILABLE" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/18">
+  <tabs>
+    <Tab text="Home">
+      <content>
+        <AnchorPane prefHeight="480.0" prefWidth="850.0" />
+      </content>
+    </Tab>
+    <Tab text="Announcements">
+      <content>
+        <AnchorPane prefHeight="480.0" prefWidth="850.0" />
+      </content>
+    </Tab>
+      <Tab text="Wishlist">
+         <content>
+            <AnchorPane prefHeight="480.0" prefWidth="850.0" />
+         </content>
+      </Tab>
+      <Tab text="History">
+         <content>
+             <AnchorPane prefHeight="480.0" prefWidth="850.0" />
+         </content>
+      </Tab>
+      <Tab text="Notifications">
+         <content>
+             <AnchorPane prefHeight="480.0" prefWidth="850.0" />
+         </content>
+      </Tab>
+  </tabs>
+</TabPane>

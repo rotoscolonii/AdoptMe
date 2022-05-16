@@ -33,7 +33,7 @@
 
     <Label text="Role:" GridPane.columnIndex="0" GridPane.rowIndex="6" />
 
-    <ChoiceBox fx:id="role" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+    <ChoiceBox fx:id="role" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="6" value="">
     </ChoiceBox>
 
     <Text fx:id="registrationMessage" GridPane.columnIndex="1" GridPane.rowIndex="7" />
