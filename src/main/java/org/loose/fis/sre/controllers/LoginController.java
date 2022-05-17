@@ -21,16 +21,27 @@ public class LoginController {
     private PasswordField passwordField;
     @FXML
     private TextField NameField;
+    @FXML
+    private Button button;
 
     @FXML
-    public void handleLoginAction() {
+    public void handleLoginAction(javafx.event.ActionEvent event) throws IOException {
         try {
             UserService.validateUser(NameField.getText(), passwordField.getText());
-            LoginMessage.setText("Logged in successfully!");
+            //LoginMessage.setText("Logged in successfully!");
+            Stage stage = (Stage) button.getScene().getWindow();
+            stage.close();
+
+            Parent menu = FXMLLoader.load(getClass().getClassLoader().getResource("menu.fxml"));
+            Scene scene = new Scene (menu);
+            Stage appStage = (Stage) ((Node ) event.getSource()).getScene().getWindow();
+            appStage.setScene(scene);
+            appStage.show();
         } catch (InvalidCredentials e) {
             LoginMessage.setText(e.getMessage());
         }
     }
+
     @FXML
     private Hyperlink registerPressed;
 
@@ -44,5 +55,4 @@ public class LoginController {
         appStage.setScene(scene);
         appStage.show();
     }
-
 }
