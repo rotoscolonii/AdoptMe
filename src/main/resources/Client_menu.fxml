@@ -12,7 +12,7 @@
   <tabs>
     <Tab text="Home">
       <content>
-        <AnchorPane prefHeight="480.0" prefWidth="850.0">
+        <AnchorPane prefHeight="480.0" prefWidth="850.0" style="-fx-background-color: #34aaed;">
                <children>
                   <ImageView fitHeight="326.0" fitWidth="566.0" layoutX="157.0" layoutY="76.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -31,7 +31,7 @@
       <content>
         <AnchorPane prefHeight="480.0" prefWidth="850.0">
                <children>
-                  <Label layoutX="308.0" layoutY="132.0" text="LMAO">
+                  <Label layoutX="308.0" layoutY="132.0">
                      <font>
                         <Font size="96.0" />
                      </font>
@@ -39,14 +39,22 @@
                </children></AnchorPane>
       </content>
     </Tab>
+      <Tab text="Survey">
+         <content>
+            <AnchorPane prefHeight="480.0" prefWidth="850.0">
+               <children>
+                  <Label layoutX="308.0" layoutY="132.0">
+                     <font>
+                        <Font size="96.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </content>
+      </Tab>
       <Tab text="Wishlist">
          <content>
             <AnchorPane prefHeight="480.0" prefWidth="850.0" />
-         </content>
-      </Tab>
-      <Tab text="History">
-         <content>
-             <AnchorPane prefHeight="480.0" prefWidth="850.0" />
          </content>
       </Tab>
       <Tab text="Notifications">
